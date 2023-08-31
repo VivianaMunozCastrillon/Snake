@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Snake</title>
+
+        <!-- <link rel="stylesheet" type="text/css" href="snakeStyle.css">
+        <script src="snakeJs.js" defer></script> -->
+
+        <style>
+            * {
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0;
+            }
+
+            html, body {
+                width: 100vw;
+                height: 100vh;
+            }
+
+            .contenedor__principal {
+                width: inherit;
+                height: inherit;
+                background-color: #888;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .contenedor__2do {
+                width: 500px;
+                height: 550px;
+                background-color: inherit;
+                display: block;
+            }
+
+            .score__board {
+                width: inherit;
+                height: 10%;
+                border-radius: 7px 7px 0 0;
+                font-size: 24px;
+                text-shadow: 1px 1px 2px white;
+                background-color: #333;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .ptos {
+                width: fit-content;
+                height: fit-content;
+                margin-left: 10%;
+                color: yellow;
+            }
+
+            .hi {
+                width: fit-content;
+                height: fit-content;
+                margin-right: 10%;
+                color: #CCC;
+            }
+
+            .board {
+                width: 100%;
+                height: 90%;
+                border: 1px solid black;
+                background: linear-gradient(seagreen, green); 
+                display: grid;
+                grid-template: repeat(20, 1fr) / repeat(20, 1fr);
+            }
+
+            .sprite {
+                width: 100%;
+                height: 100%;
+            }
+
+            .snake {
+                background-color: yellowgreen;
+                /*grid-area: 1 / 1;*/
+                box-shadow: 2px 2px 9px lightyellow;
+            }
+
+            .manzana {
+                border-radius: 50%;
+                /*background-color: indianred;*/
+                background: radial-gradient(red, darkred);
+                box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.7);
+                grid-area: 3 / 3;
+            }
+
+            #game_over {
+                width: 100%;
+                height: 90%;
+                border: 1px solid black;
+                background: linear-gradient(seagreen, green);
+                font-size: 64px;
+                font-weight: bold;
+                text-shadow: 2px 2px 7px black;
+                color: orangered;
+                display: none;
+                grid-template-rows: repeat(2, 1fr);
+                align-items: flex-end;
+                justify-content: center;
+            }
+
+            #rejugar {
+                width: 90%;
+                height: fit-content;
+                font-size: 24px;
+                font-weight: 400;
+                align-self: center;
+                justify-self: center;
+                color: black;
+                border-radius: 6px;
+                background: linear-gradient(#BBB, #555);
+                box-shadow: inset -3px -2px 2px rgba(0, 0, 0, 0.7);
+                cursor: pointer;
+                padding: 3%;
+            }
+
+            #rejugar:active {
+                transform: translate(-3px, -4px);
+            }
+
+            .control__buttons {
+                width: fit-content;
+                height: fit-content;
+                display: none;
+                align-items: center;
+                justify-items: center;
+            }
+
+            .uplerido {
+                height: 50px;
+                color: black;
+                border-radius: 6px;
+                background: linear-gradient(#CCC, #777);
+                font-size: 30px;
+                font-weight: bold;
+                box-shadow: inset -3px -2px 2px rgba(0, 0, 0, 0.7);
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .uplerido:active {
+                transform: translate(-2px, -4px);
+            }
+
+            #up, #do {
+                width: 300px;
+            }
+
+            #le, #ri {
+                width: 150px;
+                height: 60px;
+            }
+
+            .flecha__direccion {
+                box-sizing: content-box;
+                width: 1px;
+                height: 1px;
+                border: 20px solid;
+            }
+
+            .arriba {
+                border-color: transparent transparent black transparent;
+                margin: 0 0 7% 0;
+            }
+
+            .izquierda {
+                border-color: transparent black transparent transparent;
+            }
+
+            .derecha {
+                border-color: transparent transparent transparent black;
+            }
+
+            .abajo {
+                border-color: black transparent transparent transparent;
+                margin: 7% 0 0 0;
+            }
+
+            @media screen and (max-width: 500px) {
+                .contenedor__principal {
+                    align-items: flex-start;
+                }
+
+                .contenedor__2do {
+                    width: 300px;
+                    height: 350px;
+                }
+
+                .score__board {
+                    font-size: 18px;
+                }
+
+                .control__buttons {
+                    display: flex;
+                }
+
+                #game_over {
+                    font-size: 32px;
+                }
+
+                #rejugar {
+                    font-size: 14px;
+                }
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class='contenedor__principal'>
+            <div class='contenedor__2do'>
+
+                <div class='score__board'>
+                    <div class='score__board ptos' id='ptos'>Puntos: 0</div>
+                    <div class='score__board hi'>Record: 0</div>
+                </div>
+
+                <div class='board' id='game_board'>
+                    <div class='sprite manzana' id='manzana'></div>
+                    <div class='sprite snake' id='snake'></div>
+                </div>
+
+                <div id='game_over'>Game Over
+                    <button id='rejugar'>Jugar otra partida</button>
+                </div>
+
+                <div class='control__buttons'>
+                    <button class='uplerido' id='up'>
+                        <div class='flecha__direccion arriba' id='up2'></div>
+                    </button>
+                </div>
+                
+                <div class='control__buttons'>
+                    <button class='uplerido' id='le'>
+                        <div class='flecha__direccion izquierda' id='le2'></div>
+                    </button>
+
+                    <button class='uplerido' id='ri'>
+                        <div class='flecha__direccion derecha' id='ri2'></div>
+                    </button>
+                </div>
+
+                <div class='control__buttons'>
+                    <button class='uplerido' id='do'>
+                        <div class='flecha__direccion abajo' id='do2'></div>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+            // --------------------------------------------------------
+            //  Snake (css - grid)
+            // --------------------------------------------------------
+            const grid = [20, 20];
+
+            let snake = [];
+            let x = 9;
+            let y = 7;
+            let offSetX = 1;
+            let offSetY = 0;
+            let direccion = 'ArrowRight';
+
+            let manzana;
+            let manzanaX = 3;
+            let manzanaY = 3;
+
+            let puntos = 0;
+            let record = 0;
+
+            let gameOver = false;
+
+            window.onload = () => {
+                window.board = document.getElementById('game_board');
+                window.mostrarGameOver = document.getElementById('game_over');
+                window.rejugar = document.getElementById('rejugar');
+
+                window.mostrarPtos = document.getElementById('ptos');
+                window.mostrarHi = document.querySelector('.score__board hi');
+
+                snake[0] = document.getElementById('snake');
+                manzana = document.getElementById('manzana');
+
+                setInterval(() => {
+                    if (!gameOver) {
+                        x += offSetX;
+                        y += offSetY;
+
+                        for (let i = snake.length - 1; i > 0; i --) {
+                            snake[i].style.gridArea = snake[i - 1].style.gridArea;
+                        }
+
+                        let newPos = `${y}/${x}`;
+                        snake[0].style.gridArea = newPos;
+
+                        let autoColision = checkAutoColision();
+
+                        if (x > grid[0] || x < 1 || y > grid[1] || y < 1 || autoColision) {
+                            gameOver = true;
+                            board.style.display = 'none';
+                            mostrarGameOver.style.display = 'grid';
+                        }
+
+                        if (x === manzanaX && y === manzanaY) {
+                            manzanaX = Math.floor(Math.random() * grid[0]) + 1;
+                            manzanaY = Math.floor(Math.random() * grid[1]) + 1;
+                            manzana.style.gridArea = `${manzanaY}/${manzanaX}`;
+
+                            creaNuevoSegmento('div', 'class', 'sprite snake', newPos);
+
+                            puntos ++;
+                            mostrarPtos.innerHTML = `Puntos: ${puntos}`;
+                        }
+                    }
+
+                }, 100);
+            }
+
+            function creaNuevoSegmento(tipoElemento, attr, nombreAttr, newPos) {
+                let nuevoSegmento = document.createElement(tipoElemento);
+                nuevoSegmento.setAttribute(attr, nombreAttr);
+                nuevoSegmento.style.gridArea = newPos;
+                board.appendChild(nuevoSegmento);
+                snake.push(nuevoSegmento);
+            }
+
+            function checkAutoColision() {
+                for (i = 1; i < snake.length; i ++) {
+                    if (snake[i].style.gridArea === snake[0].style.gridArea) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
+            document.addEventListener('keydown', (event) => {
+                console.log(event.key);
+
+                let leerTecladoArray = {
+                    ArrowUp: [0, -1, 'ArrowDown'],
+                    ArrowDown: [0, 1, 'ArrowUp'],
+                    ArrowLeft: [-1, 0, 'ArrowRight'],
+                    ArrowRight: [1, 0, 'ArrowLeft']
+                };
+
+                let teclaPulsada = event.key;
+
+                if (Object.keys(leerTecladoArray).includes(teclaPulsada)) {
+
+                    if (direccion != leerTecladoArray[teclaPulsada][2]) {
+                        offSetX = leerTecladoArray[teclaPulsada][0];
+                        offSetY = leerTecladoArray[teclaPulsada][1];
+                        direccion = teclaPulsada;
+                    }
+                }
+
+                if (teclaPulsada === 'Enter' && gameOver) location.reload();
+            });
+
+            document.addEventListener('click', (event) => {
+                console.log(event.target.id);
+
+                let clicksArray = {
+                    up: [0, -1, 'ArrowDown'],
+                    do: [0, 1, 'ArrowUp'],
+                    le: [-1, 0, 'ArrowRight'],
+                    ri: [1, 0, 'ArrowLeft'],
+                    up2: [0, -1, 'ArrowDown'],
+                    do2: [0, 1, 'ArrowUp'],
+                    le2: [-1, 0, 'ArrowRight'],
+                    ri2: [1, 0, 'ArrowLeft']
+                };
+
+                let clickBoton = event.target.id;
+
+                if (Object.keys(clicksArray).includes(clickBoton)) {
+
+                    if (direccion != clicksArray[clickBoton][2]) {
+                        offSetX = clicksArray[clickBoton][0];
+                        offSetY = clicksArray[clickBoton][1];
+                        direccion = clickBoton;
+                    }
+                }
+
+                if (clickBoton === 'rejugar') location.reload();
+            });
+        
+        </script>
+    </body>
+</html>

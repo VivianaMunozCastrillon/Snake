@@ -125,11 +125,14 @@ html, body {
 	height: 50px;
 	color: black;
 	border-radius: 6px;
-	background-color: #AAA;
+	background: linear-gradient(#CCC, #777);
 	font-size: 30px;
 	font-weight: bold;
 	box-shadow: inset -3px -2px 2px rgba(0, 0, 0, 0.7);
 	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .uplerido:active {
@@ -142,6 +145,32 @@ html, body {
 
 #le, #ri {
 	width: 150px;
+	height: 60px;
+}
+
+.flecha__direccion {
+	box-sizing: content-box;
+	width: 1px;
+	height: 1px;
+	border: 20px solid;
+}
+
+.arriba {
+	border-color: transparent transparent black transparent;
+	margin: 0 0 7% 0;
+}
+
+.izquierda {
+	border-color: transparent black transparent transparent;
+}
+
+.derecha {
+	border-color: transparent transparent transparent black;
+}
+
+.abajo {
+	border-color: black transparent transparent transparent;
+	margin: 7% 0 0 0;
 }
 
 @media screen and (max-width: 500px) {

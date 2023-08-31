@@ -114,7 +114,11 @@ document.addEventListener('click', (event) => {
         up: [0, -1, 'ArrowDown'],
         do: [0, 1, 'ArrowUp'],
         le: [-1, 0, 'ArrowRight'],
-        ri: [1, 0, 'ArrowLeft'] 
+        ri: [1, 0, 'ArrowLeft'],
+        up2: [0, -1, 'ArrowDown'],
+        do2: [0, 1, 'ArrowUp'],
+        le2: [-1, 0, 'ArrowRight'],
+        ri2: [1, 0, 'ArrowLeft']
     };
 
     let clickBoton = event.target.id;
