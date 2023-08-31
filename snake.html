@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Snake</title>
+
+        <link rel="stylesheet" type="text/css" href="snakeStyle.css">
+        <script src="snakeJs.js" defer></script>
+    </head>
+
+    <body>
+        <div class='contenedor__principal'>
+            <div class='contenedor__2do'>
+
+                <div class='score__board'>
+                    <div class='score__board ptos' id='ptos'>Puntos: 0</div>
+                    <div class='score__board hi'>Record: 0</div>
+                </div>
+
+                <div class='board' id='game_board'>
+                    <div class='sprite manzana' id='manzana'></div>
+                    <div class='sprite snake' id='snake'></div>
+                </div>
+
+                <div id='game_over'>Game Over
+                    <button id='rejugar'>Jugar otra partida</button>
+                </div>
+
+                <div class='control__buttons'>
+                    <button class='uplerido' id='up'>Up</button>
+                </div>
+                
+                <div class='control__buttons'>
+                    <button class='uplerido' id='le'>Le</button>
+                    <button class='uplerido' id='ri'>Ri</button>
+                </div>
+
+                <div class='control__buttons'>
+                    <button class='uplerido' id='do'>Do</button>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>
