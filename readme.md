@@ -4,6 +4,8 @@ El proyecto consta de:
 
 - index.html
 - snakeStyle.css (sin canvas, hecho en CSS usando grid)
-- snakeJs.js (podría haverlo llamado main.js)
+- main.js
+- constants.js (constantes del juego)
+- functions.js (funciones del juego)
 
 https://juan1639.github.io/snake-responsive
