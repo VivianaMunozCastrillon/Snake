@@ -187,29 +187,29 @@ html, body {
 }
 
 /* Media Query para tablets y móviles */
-@media screen and (max-width: 500px) {
-	.contenedor__principal {
-		align-items: flex-start;
-	}
+@media screen and (max-width: 1024px) { 
+    .contenedor__principal {
+        align-items: flex-start;
+    }
 
-	.contenedor__2do {
-		width: 300px;
-		height: 350px;
-	}
+    .contenedor__2do {
+        width: 300px;
+        height: 350px;
+    }
 
-	.score__board {
-		font-size: 18px;
-	}
+    .score__board {
+        font-size: 18px;
+    }
 
-	.control__buttons {
-		display: flex;
-	}
+    .control__buttons {
+        display: flex; 
+    }
 
-	#game_over {
-		font-size: 32px;
-	}
+    #game_over {
+        font-size: 32px;
+    }
 
-	#rejugar {
-		font-size: 14px;
-	}
+    #rejugar {
+        font-size: 14px;
+    }
 }
