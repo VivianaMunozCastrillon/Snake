@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"> <!-- Declara el tipo de documento y el idioma de la página como inglés -->
+    <head>
+        <meta charset="UTF-8"> <!-- Define la codificación de caracteres como UTF-8 (para soportar caracteres especiales) -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que el diseño sea responsivo en dispositivos móviles -->
+        <title>Snake</title> <!-- Título de la pestaña del navegador -->
+
+        <link rel="stylesheet" type="text/css" href="snakeStyle.css"> <!-- Enlaza la hoja de estilos externa para el diseño -->
+        <script src="main.js" defer></script> <!-- Carga el script de JavaScript de forma diferida para no bloquear la carga del HTML -->
+
+    </head>
+
+    <body>
+        <!-- Contenedor principal que agrupa todos los elementos del juego -->
+        <div class='contenedor__principal'> 
+            <div class='contenedor__2do'> <!-- Segundo contenedor que organiza la disposición de los elementos -->
+
+                <!-- Sección que muestra el puntaje del jugador -->
+                <div class='score__board'>
+                    <div class='score__board ptos' id='ptos'>Puntos: 0</div> <!-- Contenedor que muestra los puntos actuales -->
+                </div>
+
+                <!-- Área de juego donde se moverá la serpiente -->
+                <div class='board' id='game_board'> 
+                    <div class='sprite manzana' id='manzana'></div> <!-- Manzana que la serpiente debe comer -->
+                    <div class='sprite snake' id='snake'></div> <!-- La serpiente que se moverá en el tablero -->
+                </div>
+
+                <!-- Mensaje de Game Over que aparece cuando el jugador pierde -->
+                <div id='game_over'>Game Over
+                    <button id='rejugar'>Jugar otra partida</button> <!-- Botón para reiniciar el juego -->
+                </div>
+
+                <!-- Controles del juego (botones para dispositivos táctiles) -->
+                <div class='control__buttons'>
+                    <button class='uplerido' id='up'> <!-- Botón para mover la serpiente hacia arriba -->
+                        <div class='flecha__direccion arriba' id='up2'></div>
+                    </button>
+                </div>
+                
+                <div class='control__buttons'>
+                    <button class='uplerido' id='le'> <!-- Botón para mover la serpiente a la izquierda -->
+                        <div class='flecha__direccion izquierda' id='le2'></div>
+                    </button>
+
+                    <button class='uplerido' id='ri'> <!-- Botón para mover la serpiente a la derecha -->
+                        <div class='flecha__direccion derecha' id='ri2'></div>
+                    </button>
+                </div>
+
+                <div class='control__buttons'>
+                    <button class='uplerido' id='do'> <!-- Botón para mover la serpiente hacia abajo -->
+                        <div class='flecha__direccion abajo' id='do2'></div>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </body>
+</html>
