@@ -1,145 +1,214 @@
-/* Establece el modelo de caja para todos los elementos y quita los márgenes y rellenos predeterminados */
+/* Reset de estilos básicos para evitar márgenes y paddings inesperados */
 * {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
-/* Define el tamaño del HTML y el BODY para que ocupen toda la pantalla del navegador */
+/* Ajustes generales del HTML y el Body */
 html, body {
-	width: 100vw;
-	height: 100vh;
-	background-color: #E0F7FA; /* Azul claro suave */
+    width: 100vw; /* Ocupa todo el ancho de la pantalla */
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    background-color: #FFF3E0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Estiliza el contenedor principal que engloba todo el juego */
+/* Contenedor principal del juego */
 .contenedor__principal {
-	width: inherit;
-	height: inherit;
-	background-color: #80CBC4; /* Verde agua */
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    width: inherit;
+    height: inherit;
+    background-color: #F8BBD0; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Contenedor secundario que mantiene el área del juego */
+/* Contenedor secundario donde está el tablero */
 .contenedor__2do {
-	width: 500px;
-	height: 550px;
-	background-color: inherit;
-	display: block;
+    width: 500px;
+    height: 550px;
+    background-color: inherit;
+    display: block;
 }
 
-/* Estiliza la barra de puntaje */
+/* Barra de puntuación */
 .score__board {
-	width: inherit;
-	height: 10%;
-	border-radius: 7px 7px 0 0;
-	font-size: 24px;
-	text-shadow: 1px 1px 2px black;
-	background-color: #74a8d2; 
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+    width: inherit;
+    height: 10%;
+    border-radius: 7px 7px 0 0;
+    font-size: 24px;
+    text-shadow: 1px 1px 2px white;
+    background-color: #D1C4E9; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-/* Estiliza la sección donde se muestran los puntos */
+/* Puntos actuales */
 .ptos {
-	width: fit-content;
-	height: fit-content;
-	margin-left: 10%;
-	color: #FFF;
+    width: fit-content;
+    height: fit-content;
+    margin-left: 10%;
+    color: #161b1c; 
 }
 
-
-/* Estiliza la sección para el puntaje más alto */
+/* Puntuación más alta */
 .hi {
-	width: fit-content;
-	height: fit-content;
-	margin-right: 10%;
-	color: #FFF; 
+    width: fit-content;
+    height: fit-content;
+    margin-right: 10%;
+    color: #B39DDB; 
 }
 
-/* Define el tablero del juego */
+/* Tablero de juego */
 .board {
-	width: 100%;
-	height: 90%;
-	border: 1px solid black;
-	background: linear-gradient(#8bc8d6, #bf7db2); 
-	display: grid;
-	grid-template: repeat(20, 1fr) / repeat(20, 1fr);
+    width: 100%;
+    height: 90%;
+    border: 1px solid black;
+    background: linear-gradient(#E1F5FE, #B3E5FC);
+    display: grid;
+    grid-template: repeat(20, 1fr) / repeat(20, 1fr);
 }
 
-/* Clase base para los elementos dentro del tablero */
-.sprite {
-	width: 100%;
-	height: 100%;
-}
-
-/* Estiliza la serpiente */
+/* Serpiente */
 .snake {
-	background-color: #388E3C; 
-	box-shadow: 2px 2px 9px #2E7D32; 
+    background-color: #FFCC80;
+    box-shadow: 4px 4px 12px rgba(255, 224, 178, 0.7);
 }
 
-/* Estiliza la manzana */
+/* Manzana */
 .manzana {
-	border-radius: 50%;
-	background: radial-gradient(#FF5252, #D32F2F); 
-	box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.7);
-	grid-area: 3 / 3;
+    border-radius: 50%;
+    background: radial-gradient(#EF9A9A, #E57373); 
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.7);
+    grid-area: 3 / 3;
 }
 
-/* Estiliza la pantalla de "Game Over" */
+/* Pantalla de Game Over */
 #game_over {
-	width: 100%;
-	height: 90%;
-	border: 1px solid black;
-	background: linear-gradient(#ff8099, #6a5cd7); 
-	font-size: 64px;
-	font-weight: bold;
-	text-shadow: 2px 2px 7px black;
-	color: #00c7e6; /* Naranja oscuro */
-	display: none;
-	grid-template-rows: repeat(2, 1fr);
-	align-items: flex-end;
-	justify-content: center;
+    width: 100%;
+    height: 90%;
+    border: 1px solid black;
+    background: linear-gradient(#C8E6C9, #A5D6A7); 
+    font-size: 64px;
+    font-weight: bold;
+    text-shadow: 2px 2px 7px black;
+    color: #FFAB91; /* Naranja claro */
+    display: none;
+    grid-template-rows: repeat(2, 1fr);
+    align-items: flex-end;
+    justify-content: center;
 }
 
-/* Estiliza el botón de "Jugar otra partida" */
+/* Botón de reinicio */
 #rejugar {
-	width: 90%;
-	height: fit-content;
-	font-size: 24px;
-	font-weight: 400;
-	align-self: center;
-	justify-self: center;
-	color: white;
-	border-radius: 6px;
-	background: linear-gradient(#a4edb3, #d764b5);
-	box-shadow: inset -3px -2px 2px rgba(0, 0, 0, 0.7);
-	cursor: pointer;
-	padding: 3%;
+    width: 90%;
+    height: fit-content;
+    font-size: 24px;
+    font-weight: 400;
+    align-self: center;
+    justify-self: center;
+    color: black;
+    border-radius: 6px;
+    background: linear-gradient(#FFE0B2, #FFCC80);
+    box-shadow: inset -2px -2px 4px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    padding: 3%;
 }
 
-/* Contenedor de los botones de control */
+#rejugar:active {
+    transform: translate(-3px, -4px);
+}
+
+/* Ocultar controles en computadoras */
 .control__buttons {
-	display: none;
-	align-items: center;
-	justify-items: center;
+    display: none;
 }
 
-/* Estilos para los botones de control */
+/* Botones de dirección */
 .uplerido {
-	height: 50px;
-	color: white;
-	border-radius: 6px;
-	background: linear-gradient(#9650c6, #6a2f6c);
-	font-size: 30px;
-	font-weight: bold;
-	box-shadow: inset -3px -2px 2px rgba(0, 0, 0, 0.7);
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    height: 50px;
+    color: black;
+    border-radius: 6px;
+    background: linear-gradient(#B3E5FC, #81D4FA);
+    font-size: 30px;
+    font-weight: bold;
+    box-shadow: inset -3px -2px 2px rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.uplerido:active {
+    transform: translate(-2px, -4px);
+}
+
+#up, #do {
+    width: 300px;
+}
+
+#le, #ri {
+    width: 150px;
+    height: 60px;
+}
+
+/* Estilos para las flechas de dirección */
+.flecha__direccion {
+    box-sizing: content-box;
+    width: 1px;
+    height: 1px;
+    border: 20px solid;
+}
+
+.arriba {
+    border-color: transparent transparent black transparent;
+    margin: 0 0 7% 0;
+}
+
+.izquierda {
+    border-color: transparent black transparent transparent;
+}
+
+.derecha {
+    border-color: transparent transparent transparent black;
+}
+
+.abajo {
+    border-color: black transparent transparent transparent;
+    margin: 7% 0 0 0;
+}
+
+/* Media Query para tablets y móviles */
+@media screen and (max-width: 1024px) {
+    .contenedor__principal {
+        align-items: flex-start;
+    }
+
+    .contenedor__2do {
+        width: 90%;
+        height: 90%;
+    }
+
+    .score__board {
+        font-size: 18px;
+    }
+
+    /* Mostrar botones en dispositivos móviles */
+    .control__buttons {
+        display: flex !important;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    #game_over {
+        font-size: 32px;
+    }
+
+    #rejugar {
+        font-size: 14px;
+    }
 }
