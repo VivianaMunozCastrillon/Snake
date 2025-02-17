@@ -50,14 +50,6 @@ html, body {
     color: #161b1c; 
 }
 
-/* Puntuación más alta */
-.hi {
-    width: fit-content;
-    height: fit-content;
-    margin-right: 10%;
-    color: #B39DDB; 
-}
-
 /* Tablero de juego */
 .board {
     width: 100%;
@@ -96,7 +88,7 @@ html, body {
     font-size: 64px;
     font-weight: bold;
     text-shadow: 2px 2px 7px black;
-    color: #FFAB91; /* Naranja claro */
+    color: #FFAB91; 
     display: none;
     grid-template-rows: repeat(2, 1fr);
     align-items: flex-end;

@@ -21,8 +21,7 @@ let manzanaX = 3;
 let manzanaY = 3;
 
 // Variables para el puntaje y el récord
-let puntos = 0;
-let record = 0;
+let puntos = 0; 
 
 // Variable que indica si el juego ha terminado
 let gameOver = false;
@@ -36,7 +35,6 @@ window.onload = () => {
 
     // Elementos de la interfaz de puntaje
     window.mostrarPtos = document.getElementById('ptos');
-    window.mostrarHi = document.querySelector('.score__board hi');
 
     // Inicializa la cabeza de la serpiente y la manzana
     snake[0] = document.getElementById('snake');
@@ -62,7 +60,7 @@ window.onload = () => {
             // Verifica si la serpiente colisiona consigo misma
             let autoColision = checkAutoColision();
 
-            // Verifica si la serpiente ha chocado con los bordes o consigo misma
+            // Verifica si la serpiente ha chocado con los bordes 
             if (x > grid[0] || x < 1 || y > grid[1] || y < 1 || autoColision) {
                 gameOver = true;
                 board.style.display = 'none'; // Oculta el tablero
@@ -85,7 +83,7 @@ window.onload = () => {
             }
         }
 
-    }, 100);
+    }, 140);
 }
 
 // Función para crear un nuevo segmento en la serpiente
@@ -109,7 +107,7 @@ function checkAutoColision() {
 
 // Evento que escucha las teclas presionadas por el usuario
 document.addEventListener('keydown', (event) => {
-    console.log(event.key); // Muestra en la consola la tecla presionada
+    console.log(event.key); 
 
     // Diccionario con las direcciones y sus restricciones
     let leerTecladoArray = {
@@ -157,9 +155,9 @@ document.addEventListener('click', (event) => {
     if (Object.keys(clicksArray).includes(clickBoton)) {
         // Evita que la serpiente se mueva en dirección opuesta a la actual
         if (direccion != clicksArray[clickBoton][2]) {
-            offSetX = clicksArray[clickBoton][0];
-            offSetY = clicksArray[clickBoton][1];
-            direccion = clickBoton;
+            offSetX = clicksArray[clickBoton][0]; // Actualiza el desplazamiento en X
+            offSetY = clicksArray[clickBoton][1]; // Actualiza el desplazamiento en y
+            direccion = clickBoton; // Guarda la nueva dirección
         }
     }
 
